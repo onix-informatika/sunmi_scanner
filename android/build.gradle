@@ -22,7 +22,7 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    namespace "dev.pub.sunmi_scanner"
+    namespace "com.example.sunmi_scanner"
     
     compileSdkVersion 31
 
