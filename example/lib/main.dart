@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String? scannedValue;
 
-  void _setScannedValue(String value) {
+  void _setScannedValue(String? value) {
     setState(() {
       scannedValue = value;
     });
@@ -25,7 +25,9 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     SunmiScanner.onBarcodeScanned().listen((event) {
-      _setScannedValue(event);
+      if(event != null) {
+        _setScannedValue(event);
+      }
     });
   }
 
