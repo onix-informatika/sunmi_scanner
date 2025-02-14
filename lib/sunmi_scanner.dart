@@ -53,14 +53,14 @@ class SunmiScanner {
   }
 
   /// Stream for the event value
-  static Stream<String>? _onBarcodeScanned;
+  static Stream<String?>? _onBarcodeScanned;
 
   /// Subscribe to this stream to receive barcode as string when it's scanned.
   /// Make sure to cancel subscription when you're done.
-  static Stream<String> onBarcodeScanned() {
+  static Stream<String?> onBarcodeScanned() {
     _onBarcodeScanned ??= _eventChannel
         .receiveBroadcastStream()
-        .map((dynamic event) => event as String);
-    return _onBarcodeScanned ?? const Stream<String>.empty();
+        .map((dynamic event) => event as String?);
+    return _onBarcodeScanned ?? const Stream<String?>.empty();
   }
 }
