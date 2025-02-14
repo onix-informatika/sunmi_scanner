@@ -100,23 +100,23 @@ public class SunmiScannerPlugin implements FlutterPlugin, MethodCallHandler, Str
     @Override
     public void onListen(Object arguments, EventSink events) {
         scannerServiceReceiver = createScannerServiceReceiver(events);
+        var filter = new IntentFilter("com.sunmi.scanner.ACTION_DATA_CODE_RECEIVED");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             context.registerReceiver(
                     scannerServiceReceiver,
-                    new IntentFilter("com.sunmi.scanner.ACTION_DATA_CODE_RECEIVED"),
-                    Context.RECEIVER_EXPORTED
-            )
+                    filter,
+                            Context.RECEIVER_EXPORTED
+            );
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             context.registerReceiver(
                     scannerServiceReceiver,
-                    new IntentFilter("com.sunmi.scanner.ACTION_DATA_CODE_RECEIVED"),
-                    0
-            )
+                    filter,
+                            0
+            );
         } else {
-            context.registerReceiver(scannerServiceReceiver, new IntentFilter("com.sunmi.scanner.ACTION_DATA_CODE_RECEIVED"))
+            context.registerReceiver(scannerServiceReceiver,
+                    filter);
         }
-
-        );
     }
 
     /**
